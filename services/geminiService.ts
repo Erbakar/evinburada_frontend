@@ -6,14 +6,16 @@ const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const searchHomesFunction: FunctionDeclaration = {
   name: 'search_homes',
-  description: 'Kullanıcının belirttiği kriterlere göre ülke genelinde ev araması yapar.',
+  description: 'Kullanıcının belirttiği kriterlere göre hiyerarşik konum bazlı (İl, İlçe, Mahalle) ev araması yapar.',
   parameters: {
     type: Type.OBJECT,
     properties: {
-      locations: { 
+      province: { type: Type.STRING, description: 'Aranan şehir (ör: "İstanbul", "Ankara")' },
+      district: { type: Type.STRING, description: 'Aranan ilçe (ör: "Beşiktaş", "Kadıköy")' },
+      neighborhoods: { 
         type: Type.ARRAY, 
         items: { type: Type.STRING },
-        description: 'Aranan şehir, ilçe veya mahalle listesi (ör: ["Şişli", "Beylikdüzü", "Ankara"])' 
+        description: 'Aranan mahalleler (ör: ["Moda", "Bebek"])' 
       },
       dealType: { type: Type.STRING, enum: ['Kiralık', 'Satılık', 'Günlük Kiralık'], description: 'Kiralık, Satılık veya Günlük Kiralık mı?' },
       roomCount: { type: Type.STRING, description: 'Oda sayısı (ör: 2+1, 3+1, 1+0)' },
@@ -38,23 +40,20 @@ export const startChat = () => {
   return ai.chats.create({
     model: 'gemini-3-pro-preview',
     config: {
-      systemInstruction: `Sen 'Evinburada' emlak asistanısın. Görevin kullanıcıların tüm Türkiye genelinde hayalindeki evi bulmasına yardımcı olmaktır.
+      systemInstruction: `Sen 'Evinburada' emlak asistanısın. Görevin kullanıcıların hiyerarşik (İl > İlçe > Mahalle) yapıda hayalindeki evi bulmasına yardımcı olmaktır.
       
-      GENEL KAPSAM:
-      - Türkiye'nin her yerinden arama yapabilirsin. Şu an sistemimizde örnek olarak özellikle Beylikdüzü ve Şişli bölgelerinde yoğun ilanlar bulunmaktadır.
-      - Kullanıcı "Günlük Kiralık" ev aradığında dealType olarak 'Günlük Kiralık' seçmelisin.
+      KRİTİK KURALLAR:
+      1. Kullanıcı bir bölge belirttiğinde, bu bölgenin İl, İlçe veya Mahalle olup olmadığını anla ve 'search_homes' fonksiyonuna buna göre (province, district veya neighborhoods alanlarını kullanarak) gönder.
+      2. Kullanıcıya ilanları listelediğini söylediğin her an, MUTLAKA 'search_homes' fonksiyonunu çağırmalısın.
+      3. Filtreleme alanı ile asistan tam senkron çalışmaktadır. Senin yaptığın her değişiklik UI'daki filtrelerde görünecektir.
 
       KONUM VE "BANA YAKIN" ÖZELLİĞİ:
-      1. Eğer kullanıcı "bana yakın evler", "yakınımdaki ilanlar" gibi bir şey söylerse, 'get_user_location' fonksiyonunu çağırarak koordinatlarını iste.
-      2. Koordinatlar geldiğinde, kullanıcının bulunduğu şehir ve ilçeyi tespit etmeye çalış ve o bölgedeki ilanlara odaklan.
+      - Kullanıcı yakındakileri sorarsa 'get_user_location' çağır. Koordinat gelince bölgeyi tespit edip aramayı ona göre yap.
 
-      KONU DIŞI (OFF-TOPIC) POLİTİKASI:
-      1. Eğer kullanıcı emlak, ev arama veya konut kriterleri dışında alakasız bir şey yazarsa, nazikçe konuyu tekrar ev aramasına çek.
-      2. Kullanıcıyı asla tersleme, odağını her zaman şu kriterlere yönlendir: Konum, Kiralık/Satılık/Günlük, Oda Sayısı, Fiyat, Site Durumu.
-
-      DİĞER BİLGİLER:
-      - Yeterli bilgi topladığında 'search_homes' fonksiyonunu çağır.
-      - Her zaman nazik, samimi ve profesyonel bir Türkçe kullan.`,
+      Hiyerarşi Örneği:
+      - İstanbul (İl) -> Beşiktaş (İlçe) -> Bebek (Mahalle)
+      
+      Her zaman nazik, samimi ve profesyonel bir Türkçe kullan.`,
       tools: [{ functionDeclarations: [searchHomesFunction, getUserLocationFunction] }]
     }
   });

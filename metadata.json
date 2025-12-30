@@ -1,6 +1,6 @@
 {
-  "name": "Evinburada AI Real Estate",
-  "description": "An AI-powered real estate discovery platform for the Beylikdüzü region, featuring voice and text interaction to find the perfect home.",
+  "name": "Evinburada",
+  "description": "An AI-powered real estate discovery platform for the turkey region, featuring voice and text interaction to find the perfect home.",
   "requestFramePermissions": [
     "microphone",
     "geolocation"

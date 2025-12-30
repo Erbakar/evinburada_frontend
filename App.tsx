@@ -4,7 +4,7 @@ import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-route
 import Home from './pages/Home';
 import Results from './pages/Results';
 import Details from './pages/Details';
-import { Listing, SearchFilters } from './types';
+import { SearchFilters } from './types';
 import { mockListings } from './data/listings';
 
 const DISTRICTS = ['Beylikdüzü', 'Şişli'];
@@ -14,35 +14,15 @@ const NEIGHBORHOODS: Record<string, string[]> = {
 };
 
 const AppContent: React.FC = () => {
-  const [filteredListings, setFilteredListings] = useState<Listing[]>(mockListings);
   const [activeFilters, setActiveFilters] = useState<SearchFilters>({});
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  
   const [modalFilters, setModalFilters] = useState<SearchFilters>({});
   const [selectedDistrict, setSelectedDistrict] = useState<string>('Beylikdüzü');
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSearch = (filters: SearchFilters) => {
     setActiveFilters(filters);
-    const results = mockListings.filter(listing => {
-      let match = true;
-      if (filters.dealType && listing.dealType !== filters.dealType) match = false;
-      if (filters.roomCount && !listing.roomCount.includes(filters.roomCount)) match = false;
-      if (filters.inSite !== undefined && filters.inSite && !listing.inSite) match = false;
-      if (filters.minPrice !== undefined && listing.price < filters.minPrice) match = false;
-      if (filters.maxPrice !== undefined && listing.price > filters.maxPrice) match = false;
-      if (filters.locations && filters.locations.length > 0) {
-        const locationMatch = filters.locations.some(loc => 
-          listing.neighborhood.toLowerCase().includes(loc.toLowerCase()) || 
-          listing.location.toLowerCase().includes(loc.toLowerCase())
-        );
-        if (!locationMatch) match = false;
-      }
-      return match;
-    });
-    setFilteredListings(results);
     navigate('/results');
   };
 
@@ -83,7 +63,7 @@ const AppContent: React.FC = () => {
             <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 group-hover:text-orange-500">İlan Tipi</span>
             <div className="w-[1px] h-4 bg-slate-200"></div>
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Ara</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filtrele</span>
               <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               </div>
@@ -161,7 +141,7 @@ const AppContent: React.FC = () => {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home onSearch={handleSearch} />} />
-          <Route path="/results" element={<Results listings={filteredListings} filters={activeFilters} />} />
+          <Route path="/results" element={<Results filters={activeFilters} onFilterChange={setActiveFilters} />} />
           <Route path="/details/:id" element={<Details />} />
         </Routes>
       </main>

@@ -2,7 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Listing } from '../types';
-import { mockListings } from '../data/listings';
+import { mockListings, FALLBACK_IMAGE } from '../data/listings';
+
+const SOURCE_LOGOS: Record<string, string> = {
+  'Hepsiemlak': 'https://www.hepsiemlak.com/favicon.ico',
+  'Emlakjet': 'https://www.emlakjet.com/favicon.ico'
+};
 
 const Details: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +19,10 @@ const Details: React.FC = () => {
     if (found) setListing(found);
     window.scrollTo(0, 0);
   }, [id]);
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = FALLBACK_IMAGE;
+  };
 
   if (!listing) return null;
 
@@ -41,19 +50,39 @@ const Details: React.FC = () => {
       {/* Image Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-2 h-[350px] md:h-[500px] rounded-[12px] overflow-hidden mb-12">
         <div className="md:col-span-2 md:row-span-2 relative group cursor-pointer">
-          <img src={listing.imageUrl} className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" />
+          <img 
+            src={listing.imageUrl} 
+            className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" 
+            onError={handleImageError}
+          />
         </div>
         <div className="hidden md:block relative group cursor-pointer">
-          <img src={`https://picsum.photos/seed/${listing.id}1/600/600`} className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" />
+          <img 
+            src={`https://images.unsplash.com/photo-1600585154340-be6199f7d009?auto=format&fit=crop&w=600&q=80`} 
+            className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" 
+            onError={handleImageError}
+          />
         </div>
         <div className="hidden md:block relative group cursor-pointer">
-          <img src={`https://picsum.photos/seed/${listing.id}2/600/600`} className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" />
+          <img 
+            src={`https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=600&q=80`} 
+            className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" 
+            onError={handleImageError}
+          />
         </div>
         <div className="hidden md:block relative group cursor-pointer">
-          <img src={`https://picsum.photos/seed/${listing.id}3/600/600`} className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" />
+          <img 
+            src={`https://images.unsplash.com/photo-1600607687940-4ad2364775a3?auto=format&fit=crop&w=600&q=80`} 
+            className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" 
+            onError={handleImageError}
+          />
         </div>
         <div className="hidden md:block relative group cursor-pointer">
-          <img src={`https://picsum.photos/seed/${listing.id}4/600/600`} className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" />
+          <img 
+            src={`https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80`} 
+            className="w-full h-full object-cover brightness-100 group-hover:brightness-90 transition-all" 
+            onError={handleImageError}
+          />
           <button className="absolute bottom-6 right-6 px-4 py-2 bg-white border border-slate-900 rounded-lg text-sm font-bold shadow-sm hover:bg-orange-50 transition-colors">Tüm fotoğrafları göster</button>
         </div>
       </div>
@@ -63,7 +92,13 @@ const Details: React.FC = () => {
         <div className="lg:col-span-2">
           <div className="flex justify-between items-start pb-6 border-b border-slate-200">
              <div>
-                <h2 className="text-[22px] font-bold text-slate-900 mb-1">Mülk sahibi: {listing.sourceName} Danışmanlık</h2>
+                <div className="flex items-center gap-3 mb-1">
+                   <h2 className="text-[22px] font-bold text-slate-900">Mülk sahibi: {listing.sourceName}</h2>
+                   <div className="flex items-center gap-2 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg">
+                      <img src={SOURCE_LOGOS[listing.sourceName]} alt={listing.sourceName} className="w-4 h-4 object-contain" />
+                      <span className="text-[10px] font-black uppercase text-slate-600 tracking-tighter">{listing.sourceName} İlanı</span>
+                   </div>
+                </div>
                 <p className="text-slate-600">{listing.roomCount} • {listing.area} m² • {listing.inSite ? 'Site içerisinde' : 'Sokak üzerinde'}</p>
              </div>
              <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-orange-500 overflow-hidden border border-orange-100">
@@ -157,8 +192,9 @@ const Details: React.FC = () => {
         <a 
           href={listing.sourceUrl}
           target="_blank"
-          className="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow-md active:scale-95"
+          className="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow-md active:scale-95 flex items-center gap-2"
         >
+          <img src={SOURCE_LOGOS[listing.sourceName]} alt={listing.sourceName} className="w-4 h-4 rounded-sm brightness-110" />
           {listing.sourceName}'e Git
         </a>
       </div>
@@ -168,7 +204,7 @@ const Details: React.FC = () => {
          <div className="max-w-[1120px] mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
                <div className="w-12 h-12 bg-slate-200 rounded-lg overflow-hidden border border-slate-100">
-                  <img src={listing.imageUrl} className="w-full h-full object-cover" />
+                  <img src={listing.imageUrl} className="w-full h-full object-cover" onError={handleImageError} />
                </div>
                <div>
                   <h4 className="font-bold text-sm line-clamp-1">{listing.title}</h4>
@@ -178,8 +214,9 @@ const Details: React.FC = () => {
             <a 
               href={listing.sourceUrl}
               target="_blank"
-              className="bg-orange-600 text-white px-10 py-3.5 rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg active:scale-95"
+              className="bg-orange-600 text-white px-10 py-3.5 rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg active:scale-95 flex items-center gap-2.5"
             >
+              <img src={SOURCE_LOGOS[listing.sourceName]} alt={listing.sourceName} className="w-5 h-5 rounded-sm brightness-110" />
               Daha Fazla Detay İçin {listing.sourceName}'e Git
             </a>
          </div>
