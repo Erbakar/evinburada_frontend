@@ -26,8 +26,9 @@ const searchHomesFunction: FunctionDeclaration = {
 };
 
 export const startChat = () => {
+  // Fix: Use gemini-3-pro-preview for complex reasoning tasks as per guidelines.
   return ai.chats.create({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-3-pro-preview',
     config: {
       systemInstruction: `Sen 'Evinburada' emlak asistanısın. Kullanıcıların hayalindeki evi bulmasına yardım ediyorsun.
       
