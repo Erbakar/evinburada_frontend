@@ -7,7 +7,7 @@ export interface Listing {
   neighborhood: string;
   roomCount: string;
   area: number;
-  dealType: 'Kiralık' | 'Satılık';
+  dealType: 'Kiralık' | 'Satılık' | 'Günlük Kiralık';
   inSite: boolean;
   sourceName: 'Hepsiemlak' | 'Emlakjet';
   sourceUrl: string;
@@ -18,7 +18,7 @@ export interface Listing {
 
 export interface SearchFilters {
   locations?: string[];
-  dealType?: 'Kiralık' | 'Satılık';
+  dealType?: 'Kiralık' | 'Satılık' | 'Günlük Kiralık';
   roomCount?: string;
   inSite?: boolean;
   minPrice?: number;
