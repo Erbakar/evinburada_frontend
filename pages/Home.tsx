@@ -8,8 +8,6 @@ interface HomeProps {
   onSearch: (filters: SearchFilters) => void;
 }
 
-// Fix: Explicitly type CATEGORIES to ensure the filters property matches the SearchFilters interface.
-// This prevents dealType from being inferred as a generic string, which causes errors when passed to handleCategoryClick.
 const CATEGORIES: { id: string; label: string; icon: string; filters: SearchFilters }[] = [
   { id: 'all', label: 'Tümü', icon: '🏠', filters: {} },
   { id: 'site', label: 'Site İçi', icon: '🏘️', filters: { inSite: true } },
@@ -117,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-[14px] leading-snug shadow-sm ${
                     m.role === 'user' 
-                      ? 'bg-blue-600 text-white rounded-tr-none' 
+                      ? 'bg-orange-500 text-white rounded-tr-none' 
                       : 'bg-slate-50 text-slate-800 border border-slate-100 rounded-tl-none'
                   }`}>
                     {m.content}
@@ -127,9 +125,9 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-slate-50 border border-slate-100 px-4 py-3 rounded-2xl rounded-tl-none flex gap-1 items-center">
-                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
-                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.5s]"></span>
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.5s]"></span>
                   </div>
                 </div>
               )}
@@ -137,7 +135,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
 
             {/* Input Bar */}
             <div className="p-4 bg-white border-t border-slate-100">
-              <div className="flex items-center gap-2 p-1.5 border border-slate-200 rounded-full bg-slate-50 focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-600/10 transition-all">
+              <div className="flex items-center gap-2 p-1.5 border border-slate-200 rounded-full bg-slate-50 focus-within:bg-white focus-within:ring-4 focus-within:ring-orange-500/10 transition-all">
                 <button 
                   onClick={startVoice}
                   title="Sesle ara"
@@ -158,7 +156,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                 <button 
                   onClick={() => handleSend(input)}
                   disabled={isLoading || !input.trim()}
-                  className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 disabled:opacity-50 transition-all shadow-lg active:scale-95"
+                  className="w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center hover:bg-orange-600 disabled:opacity-50 transition-all shadow-lg active:scale-95"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -177,7 +175,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
             <h3 className="text-2xl font-bold text-slate-900">Popüler Kategoriler</h3>
             <button 
               onClick={() => onSearch({})}
-              className="text-sm font-bold underline underline-offset-4 text-slate-600 hover:text-blue-600 transition-colors"
+              className="text-sm font-bold underline underline-offset-4 text-slate-600 hover:text-orange-600 transition-colors"
             >
               Tümünü gör
             </button>
@@ -188,12 +186,12 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               <div 
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.filters)}
-                className="group flex flex-col items-center justify-center gap-3 p-6 rounded-3xl border border-slate-100 hover:border-blue-100 hover:bg-blue-50/30 transition-all cursor-pointer airbnb-card-shadow"
+                className="group flex flex-col items-center justify-center gap-3 p-6 rounded-3xl border border-slate-100 hover:border-orange-100 hover:bg-orange-50/30 transition-all cursor-pointer airbnb-card-shadow"
               >
                 <div className="text-3xl grayscale group-hover:grayscale-0 transition-all transform group-hover:scale-110">
                   {cat.icon}
                 </div>
-                <span className="text-sm font-bold text-slate-700 group-hover:text-blue-600">
+                <span className="text-sm font-bold text-slate-700 group-hover:text-orange-600">
                   {cat.label}
                 </span>
               </div>
@@ -209,8 +207,8 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               Tek tek filtrelerle uğraşmak yerine ne aradığınızı anlatın. Yapay zekamız binlerce ilan arasından size en uygun olanı saniyeler içinde bulsun.
             </p>
           </div>
-          <div className="p-8 rounded-[32px] bg-blue-50 border border-blue-100">
-            <h4 className="text-xl font-bold mb-3 text-blue-900">Doğrulanmış İlanlar</h4>
+          <div className="p-8 rounded-[32px] bg-orange-50 border border-orange-100">
+            <h4 className="text-xl font-bold mb-3 text-orange-900">Doğrulanmış İlanlar</h4>
             <p className="text-slate-600 text-sm leading-relaxed">
               Portföyümüzdeki tüm ilanlar güvenilir emlak ofislerinden ve doğrulanmış kaynaklardan anlık olarak çekilir.
             </p>

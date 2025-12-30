@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Circular:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --airbnb-brand: #ff385c;
-        --airbnb-blue: #008489;
+        --brand-primary: #f97316; /* Tailwind Orange 500 */
+        --brand-dark: #ea580c;    /* Tailwind Orange 600 */
+        --brand-light: #fff7ed;   /* Tailwind Orange 50 */
       }
       body { 
         font-family: 'Inter', 'Circular', -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -32,6 +33,10 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+      .brand-text { color: var(--brand-primary); }
+      .brand-bg { background-color: var(--brand-primary); }
+      .brand-bg-hover:hover { background-color: var(--brand-dark); }
+      .brand-border { border-color: var(--brand-primary); }
     </style>
   <script type="importmap">
 {

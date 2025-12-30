@@ -43,10 +43,10 @@ const AppContent: React.FC = () => {
         <div className="max-w-[1760px] mx-auto px-4 md:px-10 lg:px-20 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-1 cursor-pointer" onClick={() => navigate('/')}>
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-blue-600 fill-current">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-orange-500 fill-current">
               <path d="M16 1L2 12v17h28V12L16 1zm11 26h-6v-8h-10v8H5V13.2l11-8.58 11 8.58V27z"/>
             </svg>
-            <h1 className="text-xl font-extrabold text-blue-600 tracking-tight hidden md:block">evinburada</h1>
+            <h1 className="text-xl font-extrabold text-orange-600 tracking-tight hidden md:block">evinburada</h1>
           </div>
 
           {/* Pill Search */}
@@ -60,7 +60,7 @@ const AppContent: React.FC = () => {
             <div className="w-[1px] h-6 bg-slate-200"></div>
             <div className="flex items-center gap-2">
               <span className="text-sm text-slate-500 px-2 font-medium">AI Asistan</span>
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-inner">
+              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center shadow-inner">
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -122,9 +122,15 @@ const AppContent: React.FC = () => {
           <div className="space-y-6">
             <h5 className="font-extrabold text-sm uppercase tracking-wider text-slate-900">Bizi Takip Edin</h5>
             <div className="flex gap-4">
-              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-slate-300 cursor-pointer transition-colors"></div>
-              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-slate-300 cursor-pointer transition-colors"></div>
-              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-slate-300 cursor-pointer transition-colors"></div>
+              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-orange-100 cursor-pointer transition-colors flex items-center justify-center">
+                 <div className="w-5 h-5 bg-slate-400 rounded-sm"></div>
+              </div>
+              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-orange-100 cursor-pointer transition-colors flex items-center justify-center">
+                 <div className="w-5 h-5 bg-slate-400 rounded-sm"></div>
+              </div>
+              <div className="w-10 h-10 bg-slate-200 rounded-full hover:bg-orange-100 cursor-pointer transition-colors flex items-center justify-center">
+                 <div className="w-5 h-5 bg-slate-400 rounded-sm"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -139,10 +145,10 @@ const AppContent: React.FC = () => {
             <span className="hover:underline cursor-pointer">KVKK Aydınlatma</span>
           </div>
           <div className="flex items-center gap-6">
-             <span className="flex items-center gap-2 cursor-pointer hover:underline font-bold text-slate-800">
+             <span className="flex items-center gap-2 cursor-pointer hover:text-orange-600 font-bold text-slate-800 transition-colors">
                Türkçe (TR)
              </span>
-             <span className="cursor-pointer hover:underline font-bold text-slate-800">₺ TRY</span>
+             <span className="cursor-pointer hover:text-orange-600 font-bold text-slate-800 transition-colors">₺ TRY</span>
           </div>
         </div>
       </footer>
