@@ -13,6 +13,11 @@ export const mockListings: Listing[] = Array.from({ length: 30 }).map((_, i) => 
   const inSite = Math.random() > 0.5;
   const sourceName = sources[Math.floor(Math.random() * sources.length)];
   
+  // Random date within last 30 days
+  const date = new Date();
+  date.setDate(date.getDate() - Math.floor(Math.random() * 30));
+  const createdAt = date.toISOString();
+
   // Logical pricing for region
   const price = dealType === 'Kiralık' 
     ? Math.floor(Math.random() * 25000) + 12000 
@@ -31,6 +36,7 @@ export const mockListings: Listing[] = Array.from({ length: 30 }).map((_, i) => 
     sourceName,
     sourceUrl: sourceName === 'Hepsiemlak' ? 'https://www.hepsiemlak.com' : 'https://www.emlakjet.com',
     description: `Beylikdüzü'nün en nezih bölgelerinden biri olan ${neighborhood} mahallesinde yer alan bu portföyümüz, ferah yapısı ve modern mimarisiyle dikkat çekiyor. ${inSite ? 'Sosyal donatıları yüksek bir site içerisinde yer almaktadır.' : 'Merkezi konumda olup ulaşım akslarına çok yakındır.'} Detaylar için iletişime geçiniz.`,
-    imageUrl: `https://picsum.photos/seed/${i + 100}/800/600`
+    imageUrl: `https://picsum.photos/seed/${i + 100}/800/600`,
+    createdAt
   };
 });

@@ -13,13 +13,16 @@ export interface Listing {
   sourceUrl: string;
   description: string;
   imageUrl: string;
+  createdAt: string; // ISO date string
 }
 
 export interface SearchFilters {
-  location?: string;
+  locations?: string[];
   dealType?: 'Kiralık' | 'Satılık';
   roomCount?: string;
   inSite?: boolean;
+  minPrice?: number;
+  maxPrice?: number;
 }
 
 export interface ChatMessage {
