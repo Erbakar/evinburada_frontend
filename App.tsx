@@ -1,11 +1,10 @@
 
 import React, { useState } from 'react';
-import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Results from './pages/Results';
 import Details from './pages/Details';
 import { SearchFilters } from './types';
-import { mockListings } from './data/listings';
 
 const DISTRICTS = ['Beylikdüzü', 'Şişli'];
 const NEIGHBORHOODS: Record<string, string[]> = {
@@ -169,5 +168,5 @@ const AppContent: React.FC = () => {
   );
 };
 
-const App: React.FC = () => <HashRouter><AppContent /></HashRouter>;
+const App: React.FC = () => <BrowserRouter><AppContent /></BrowserRouter>;
 export default App;

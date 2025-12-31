@@ -160,7 +160,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               <button onClick={() => document.getElementById('featured')?.scrollIntoView({behavior:'smooth'})} className="px-10 py-4 bg-white text-slate-900 font-black rounded-2xl hover:bg-orange-500 hover:text-white transition-all shadow-2xl text-sm uppercase tracking-widest">İlanları Keşfet</button>
               <div className="hidden sm:flex -space-x-3 items-center">
                 {[12,24,36].map(i => <img key={i} className="w-10 h-10 rounded-full border-2 border-slate-900" src={`https://i.pravatar.cc/100?img=${i}`} alt="user" onError={handleImageError} />)}
-                <span className="pl-6 text-[10px] lg:text-xs text-white font-bold tracking-widest uppercase">+5k Mutlu Kullanıcı</span>
+                <span className="pl-6 text-[10px] lg:text-xs text-white font-bold tracking-widest uppercase">+500k Mutlu Kullanıcı</span>
               </div>
             </div>
           </div>
@@ -330,7 +330,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               <div className="space-y-8">
                 {[
                   { t: 'Yapay Zeka Destekli', d: 'Karmaşık filtrelerle vakit kaybetmeyin, asistanımıza sormanız yeterli.' },
-                  { t: 'Doğrudan İletişim', d: 'İlan sahipleriyle anında bağlantı kurun, en doğru bilgiyi kaynağından alın.' },
+                  { t: 'Tüm Emlak portalları', d: 'Tek tek ilan sitelerini dolaşma hepsine tek yerden kolay ulaşım sağla' },
                   { t: 'Güncel İlanlar', d: 'Türkiye genelindeki en prestijli projeleri ve fırsatları ilk siz keşfedin.' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6 group">
@@ -347,7 +347,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
            </div>
            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center hover:bg-white/10 transition-all">
-                 <div className="text-4xl lg:text-7xl font-black text-orange-500 mb-4 tracking-tighter">140+</div>
+                 <div className="text-4xl lg:text-7xl font-black text-orange-500 mb-4 tracking-tighter">140.000+</div>
                  <div className="text-xs font-black uppercase tracking-widest text-slate-400 opacity-60">Aktif İlan Havuzu</div>
               </div>
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center sm:translate-y-12 hover:bg-white/10 transition-all">
