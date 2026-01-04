@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Listing, SearchFilters, ChatMessage } from '../types';
 import { mockListings, FALLBACK_IMAGE } from '../data/listings';
-import { startChat } from '../services/geminiService';
+import { startChat } from '../services/localChatService';
 
 interface ResultsProps {
   filters: SearchFilters;

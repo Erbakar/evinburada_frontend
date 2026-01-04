@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { startChat } from '../services/geminiService';
+import { startChat } from '../services/localChatService';
 import { ChatMessage, SearchFilters } from '../types';
 import { useNavigate } from 'react-router-dom';
 import { mockListings, FALLBACK_IMAGE } from '../data/listings';
@@ -347,11 +347,11 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
            </div>
            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center hover:bg-white/10 transition-all">
-                 <div className="text-4xl lg:text-7xl font-black text-orange-500 mb-4 tracking-tighter">140.000+</div>
+                 <div className="text-4xl lg:text-5xl font-black text-orange-500 mb-4 tracking-tighter">140.000+</div>
                  <div className="text-xs font-black uppercase tracking-widest text-slate-400 opacity-60">Aktif İlan Havuzu</div>
               </div>
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center sm:translate-y-12 hover:bg-white/10 transition-all">
-                 <div className="text-4xl lg:text-7xl font-black text-orange-500 mb-4 tracking-tighter">2sn</div>
+                 <div className="text-4xl lg:text-5xl font-black text-orange-500 mb-4 tracking-tighter">2sn</div>
                  <div className="text-xs font-black uppercase tracking-widest text-slate-400 opacity-60">Yapay Zeka Yanıtı</div>
               </div>
            </div>

@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  // base: './' yapılarak projenin her türlü klasör (alt klasör veya ana dizin) altında çalışması sağlandı
+  base: './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

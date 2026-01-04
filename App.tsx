@@ -47,10 +47,18 @@ const AppContent: React.FC = () => {
       <header className="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-[100]">
         <div className="max-w-[1760px] mx-auto px-6 md:px-10 lg:px-20 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate('/')}>
-            <div className="w-9 h-9 bg-orange-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/20 group-hover:rotate-6 transition-transform">
-               <svg viewBox="0 0 32 32" className="w-5 h-5 fill-current"><path d="M16 1L2 12v17h28V12L16 1zm11 26h-6v-8h-10v8H5V13.2l11-8.58 11 8.58V27z"/></svg>
-            </div>
-            <h1 className="text-xl font-black text-slate-900 tracking-tighter">evinburada</h1>
+            <img 
+              src="/images/logo.png" 
+              alt="Evinburada Logo" 
+              className="w-25 h-16 object-contain group-hover:scale-110 transition-transform"
+              onError={(e) => {
+                // Logo yüklenemezse fallback olarak SVG göster
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+   
           </div>
 
           <div 
@@ -149,7 +157,17 @@ const AppContent: React.FC = () => {
       <footer className="bg-white border-t border-slate-100 py-10">
         <div className="max-w-[1760px] mx-auto px-6 md:px-10 lg:px-20 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 bg-orange-500 rounded-lg flex items-center justify-center text-white">
+            <img 
+              src="/images/logo.png" 
+              alt="Evinburada Logo" 
+              className="w-6 h-6 object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+            <div className="w-6 h-6 bg-orange-500 rounded-lg flex items-center justify-center text-white hidden">
                <svg viewBox="0 0 32 32" className="w-3 h-3 fill-current"><path d="M16 1L2 12v17h28V12L16 1zm11 26h-6v-8h-10v8H5V13.2l11-8.58 11 8.58V27z"/></svg>
             </div>
             <span className="text-sm font-black text-slate-900 tracking-tighter">evinburada ai</span>
