@@ -146,10 +146,10 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
         <div className="container mx-auto px-6 lg:px-20 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           <div className="text-left space-y-6 lg:space-y-10">
-            <span className="inline-block px-4 py-2 bg-brand-500 text-white text-[10px] lg:text-xs font-black uppercase rounded-full tracking-widest shadow-xl animate-bounce">
+            <span className="inline-block px-4 py-2 bg-brand-500 text-white text-[10px] lg:text-xs font-medium uppercase rounded-full tracking-widest shadow-xl animate-bounce">
               Türkiye'nin Akıllı Emlak Platformu
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1]">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.1]">
               Evinizi Aramayın, <br /> 
               <span className="text-brand-500">Onunla Konuşun.</span>
             </h1>
@@ -157,10 +157,10 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               Binlerce ilan arasında kaybolmayın. Evinburada AI, ne istediğinizi anlar ve size en uygun seçenekleri saniyeler içinde sunar.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <button onClick={() => document.getElementById('featured')?.scrollIntoView({behavior:'smooth'})} className="px-10 py-4 bg-white text-slate-900 font-black rounded-2xl hover:bg-brand-500 hover:text-white transition-all shadow-2xl text-sm uppercase tracking-widest">İlanları Keşfet</button>
+              <button onClick={() => document.getElementById('featured')?.scrollIntoView({behavior:'smooth'})} className="px-10 py-4 bg-white text-slate-900 font-medium rounded-2xl hover:bg-brand-500 hover:text-white transition-all shadow-2xl text-sm uppercase tracking-widest">İlanları Keşfet</button>
               <div className="hidden sm:flex -space-x-3 items-center">
                 {[12,24,36].map(i => <img key={i} className="w-10 h-10 rounded-full border-2 border-slate-900" src={`https://i.pravatar.cc/100?img=${i}`} alt="user" onError={handleImageError} />)}
-                <span className="pl-6 text-[10px] lg:text-xs text-white font-bold tracking-widest uppercase">+500k Mutlu Kullanıcı</span>
+                <span className="pl-6 text-[10px] lg:text-xs text-white font-medium tracking-widest uppercase">+500k Mutlu Kullanıcı</span>
               </div>
             </div>
           </div>
@@ -175,20 +175,20 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.88.52 3.65 1.43 5.17L2.1 21.4c-.11.38.25.74.63.63l4.23-1.33C8.35 21.48 10.12 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
                          </div>
                          <div>
-                            <h4 className="font-black text-slate-900 text-sm uppercase tracking-tighter">Evinburada AI</h4>
-                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Çevrimiçi Asistan</p>
+                            <h4 className="font-medium text-slate-900 text-sm uppercase tracking-tighter">Evinburada AI</h4>
+                            <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Çevrimiçi Asistan</p>
                          </div>
                       </div>
                       <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
                          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                         <span className="text-[10px] text-green-600 font-black uppercase tracking-widest">Aktif</span>
+                         <span className="text-[10px] text-green-600 font-medium uppercase tracking-widest">Aktif</span>
                       </div>
                    </div>
                    
                    <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 space-y-4 hide-scrollbar">
                       {messages.map((m, i) => (
                         <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                          <div className={`max-w-[85%] px-5 py-3 rounded-[24px] text-xs lg:text-sm font-bold shadow-sm ${m.role === 'user' ? 'bg-brand-500 text-white rounded-br-none' : 'bg-slate-50 text-slate-700 border border-slate-100 rounded-tl-none'}`}>
+                          <div className={`max-w-[85%] px-5 py-3 rounded-[24px] text-xs lg:text-sm font-medium shadow-sm ${m.role === 'user' ? 'bg-brand-500 text-white rounded-br-none' : 'bg-slate-50 text-slate-700 border border-slate-100 rounded-tl-none'}`}>
                             {m.content}
                           </div>
                         </div>
@@ -207,7 +207,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                         <button onClick={startVoice} className={`p-3 rounded-xl transition-all ${isListeningState ? 'bg-red-500 text-white animate-pulse' : 'text-slate-400 hover:bg-slate-100'}`}>
                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
                         </button>
-                        <input className="flex-grow bg-transparent border-none text-xs lg:text-sm font-black focus:ring-0 placeholder:text-slate-300" placeholder="Hayalindeki evi tarif et..." value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend(input)} />
+                        <input className="flex-grow bg-transparent border-none text-xs lg:text-sm font-medium focus:ring-0 placeholder:text-slate-300" placeholder="Hayalindeki evi tarif et..." value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend(input)} />
                         <button onClick={() => handleSend(input)} className="w-11 h-11 bg-brand-500 text-white rounded-xl flex items-center justify-center hover:bg-brand-600 shadow-lg transition-transform active:scale-90" style={{boxShadow: '0 10px 15px -3px rgba(250, 1, 117, 0.3)'}}><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button>
                       </div>
                    </div>
@@ -229,7 +229,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                 className="flex flex-col items-center gap-4 group whitespace-nowrap opacity-60 hover:opacity-100 transition-all border-b-4 border-transparent hover:border-brand-500 pb-4"
               >
                 <span className="text-3xl group-hover:scale-125 transition-transform duration-300">{cat.icon}</span>
-                <span className="text-[10px] lg:text-xs font-black uppercase tracking-widest text-slate-500 group-hover:text-slate-900">{cat.label}</span>
+                <span className="text-[10px] lg:text-xs font-medium uppercase tracking-widest text-slate-500 group-hover:text-slate-900">{cat.label}</span>
               </button>
             ))}
           </div>
@@ -241,10 +241,10 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
         <div className="container mx-auto px-6 lg:px-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="space-y-3">
-               <h2 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Haftanın <br/><span className="text-brand-500">Öne Çıkanları</span></h2>
-               <p className="text-slate-500 font-bold text-sm lg:text-lg">Yapay zekamızın sizin için analiz ettiği en popüler fırsatlar.</p>
+               <h2 className="text-3xl lg:text-5xl font-medium text-slate-900 tracking-tighter uppercase leading-none">Haftanın <br/><span className="text-brand-500">Öne Çıkanları</span></h2>
+               <p className="text-slate-500 font-medium text-sm lg:text-lg">Yapay zekamızın sizin için analiz ettiği en popüler fırsatlar.</p>
             </div>
-            <button onClick={() => navigate('/results')} className="px-10 py-4 border-2 border-slate-900 font-black rounded-2xl hover:bg-slate-900 hover:text-white transition-all text-xs lg:text-sm uppercase tracking-widest shadow-lg">Tüm İlanları Gör</button>
+            <button onClick={() => navigate('/results')} className="px-10 py-4 border-2 border-slate-900 font-medium rounded-2xl hover:bg-slate-900 hover:text-white transition-all text-xs lg:text-sm uppercase tracking-widest shadow-lg">Tüm İlanları Gör</button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
@@ -263,23 +263,23 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                     loading="lazy"
                   />
                   <div className="absolute top-5 left-5 flex flex-col gap-2">
-                    <span className="px-4 py-1.5 bg-black/50 backdrop-blur-md text-white text-[9px] font-black uppercase rounded-xl w-fit tracking-widest">Hemen İncele</span>
+                    <span className="px-4 py-1.5 bg-black/50 backdrop-blur-md text-white text-[9px] font-medium uppercase rounded-xl w-fit tracking-widest">Hemen İncele</span>
                     <div className="flex items-center gap-2 px-3 py-1.5 bg-white/95 backdrop-blur-md rounded-xl w-fit shadow-xl border border-white/20">
                        <img src={SOURCE_LOGOS[listing.sourceName]} alt={listing.sourceName} className="w-4 h-4 rounded-sm object-contain" />
-                       <span className="text-[9px] font-black text-slate-900 uppercase tracking-tighter">{listing.sourceName}</span>
+                       <span className="text-[9px] font-medium text-slate-900 uppercase tracking-tighter">{listing.sourceName}</span>
                     </div>
                   </div>
                 </div>
                 <div className="p-8 space-y-5">
-                  <h4 className="font-black text-slate-900 line-clamp-1 text-sm lg:text-lg uppercase tracking-tight group-hover:text-brand-600 transition-colors">{listing.neighborhood}</h4>
-                  <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  <h4 className="font-medium text-slate-900 line-clamp-1 text-sm lg:text-lg uppercase tracking-tight group-hover:text-brand-600 transition-colors">{listing.neighborhood}</h4>
+                  <div className="flex items-center gap-4 text-[10px] font-medium uppercase tracking-widest text-slate-400">
                     <span>{listing.roomCount}</span>
                     <span className="w-1.5 h-1.5 bg-slate-200 rounded-full"></span>
                     <span>{listing.area} m²</span>
                   </div>
                   <div className="flex items-baseline gap-2 pt-2 border-t border-slate-50">
-                    <span className="text-2xl lg:text-3xl font-black text-brand-600 tracking-tighter">{listing.price.toLocaleString('tr-TR')}</span>
-                    <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">TL</span>
+                    <span className="text-2xl lg:text-3xl font-medium text-brand-600 tracking-tighter">{listing.price.toLocaleString('tr-TR')}</span>
+                    <span className="text-[10px] font-medium text-slate-900 uppercase tracking-widest">TL</span>
                   </div>
                 </div>
               </div>
@@ -291,8 +291,8 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
       {/* 4. POPULAR REGIONS */}
       <section className="py-24 container mx-auto px-6 lg:px-20">
         <div className="text-center mb-20 space-y-4">
-           <h2 className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tighter uppercase">Şehri Keşfet</h2>
-           <p className="text-slate-500 text-sm lg:text-xl font-bold uppercase tracking-widest opacity-60">İstanbul'un En Popüler Lokasyonları</p>
+           <h2 className="text-4xl lg:text-6xl font-medium text-slate-900 tracking-tighter uppercase">Şehri Keşfet</h2>
+           <p className="text-slate-500 text-sm lg:text-xl font-medium uppercase tracking-widest opacity-60">İstanbul'un En Popüler Lokasyonları</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
@@ -310,8 +310,8 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/10 to-transparent"></div>
               <div className="absolute bottom-12 left-10 space-y-4">
-                <h4 className="text-3xl lg:text-4xl font-black text-white tracking-tighter uppercase">{region.name}</h4>
-                <div className="inline-flex items-center gap-3 px-5 py-2 bg-brand-600 text-white text-[10px] font-black uppercase rounded-2xl tracking-widest shadow-xl group-hover:bg-white group-hover:text-brand-600 transition-colors">
+                <h4 className="text-3xl lg:text-4xl font-medium text-white tracking-tighter uppercase">{region.name}</h4>
+                <div className="inline-flex items-center gap-3 px-5 py-2 bg-brand-600 text-white text-[10px] font-medium uppercase rounded-2xl tracking-widest shadow-xl group-hover:bg-white group-hover:text-brand-600 transition-colors">
                   {region.count}
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
@@ -326,7 +326,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2"></div>
         <div className="container mx-auto px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
            <div className="space-y-10">
-              <h2 className="text-4xl lg:text-7xl font-black text-white leading-tight uppercase tracking-tighter">Emlak Dünyasında <br /><span className="text-brand-500">Gelecek Burada.</span></h2>
+              <h2 className="text-4xl lg:text-7xl font-medium text-white leading-tight uppercase tracking-tighter">Emlak Dünyasında <br /><span className="text-brand-500">Gelecek Burada.</span></h2>
               <div className="space-y-8">
                 {[
                   { t: 'Yapay Zeka Destekli', d: 'Karmaşık filtrelerle vakit kaybetmeyin, asistanımıza sormanız yeterli.' },
@@ -338,7 +338,7 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
                       <svg className="w-8 h-8 text-brand-500 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <div>
-                      <h5 className="text-xl lg:text-2xl font-black text-white uppercase tracking-tight mb-2 group-hover:text-brand-500 transition-colors">{item.t}</h5>
+                      <h5 className="text-xl lg:text-2xl font-medium text-white uppercase tracking-tight mb-2 group-hover:text-brand-500 transition-colors">{item.t}</h5>
                       <p className="text-slate-400 text-sm lg:text-lg font-medium leading-relaxed">{item.d}</p>
                     </div>
                   </div>
@@ -347,12 +347,12 @@ const Home: React.FC<HomeProps> = ({ onSearch }) => {
            </div>
            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center hover:bg-white/10 transition-all">
-                 <div className="text-4xl lg:text-5xl font-black text-brand-500 mb-4 tracking-tighter">140.000+</div>
-                 <div className="text-xs font-black uppercase tracking-widest text-slate-400 opacity-60">Aktif İlan Havuzu</div>
+                 <div className="text-4xl lg:text-5xl font-medium text-brand-500 mb-4 tracking-tighter">140.000+</div>
+                 <div className="text-xs font-medium uppercase tracking-widest text-slate-400 opacity-60">Aktif İlan Havuzu</div>
               </div>
               <div className="p-10 bg-white/5 backdrop-blur-2xl rounded-[48px] border border-white/10 text-center sm:translate-y-12 hover:bg-white/10 transition-all">
-                 <div className="text-4xl lg:text-5xl font-black text-brand-500 mb-4 tracking-tighter">2sn</div>
-                 <div className="text-xs font-black uppercase tracking-widest text-slate-400 opacity-60">Yapay Zeka Yanıtı</div>
+                 <div className="text-4xl lg:text-5xl font-medium text-brand-500 mb-4 tracking-tighter">2sn</div>
+                 <div className="text-xs font-medium uppercase tracking-widest text-slate-400 opacity-60">Yapay Zeka Yanıtı</div>
               </div>
            </div>
         </div>
