@@ -6,12 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evinburada - Hayalindeki Evi Yapay Zeka ile Bul</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand': {
+                'primary': '#fa0175',
+                'dark': '#d0015f',
+                'light': '#ffe5f3',
+                '50': '#ffe5f3',
+                '100': '#ffcce7',
+                '500': '#fa0175',
+                '600': '#d0015f',
+              }
+            }
+          }
+        }
+      }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Circular:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --brand-primary: #f97316; /* Tailwind Orange 500 */
-        --brand-dark: #ea580c;    /* Tailwind Orange 600 */
-        --brand-light: #fff7ed;   /* Tailwind Orange 50 */
+        --brand-primary: #fa0175;
+        --brand-dark: #d0015f;
+        --brand-light: #ffe5f3;
       }
       body { 
         font-family: 'Inter', 'Circular', -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;

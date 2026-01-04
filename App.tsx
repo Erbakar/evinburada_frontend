@@ -65,20 +65,20 @@ const AppContent: React.FC = () => {
             onClick={() => { setModalFilters(activeFilters); setIsFilterModalOpen(true); }}
             className="hidden md:flex items-center gap-6 px-6 py-2.5 border border-slate-200 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer bg-white group"
           >
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 group-hover:text-orange-500">Bölge</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 group-hover:text-brand-500">Bölge</span>
             <div className="w-[1px] h-4 bg-slate-200"></div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 group-hover:text-orange-500">İlan Tipi</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 group-hover:text-brand-500">İlan Tipi</span>
             <div className="w-[1px] h-4 bg-slate-200"></div>
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filtrele</span>
-              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white">
+              <div className="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="hidden lg:block text-[10px] font-black uppercase tracking-widest text-slate-600 hover:text-orange-600 cursor-pointer transition-colors">Giriş Yap</span>
+            <span className="hidden lg:block text-[10px] font-black uppercase tracking-widest text-slate-600 hover:text-brand-600 cursor-pointer transition-colors">Giriş Yap</span>
             <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-200 transition-colors">
                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
             </div>
@@ -96,7 +96,7 @@ const AppContent: React.FC = () => {
                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               <h2 className="text-lg font-black tracking-tighter uppercase">Filtreleme</h2>
-              <button onClick={() => setModalFilters({})} className="text-xs font-black uppercase text-orange-600">Sıfırla</button>
+              <button onClick={() => setModalFilters({})} className="text-xs font-black uppercase text-brand-600">Sıfırla</button>
             </div>
             
             <div className="flex-grow overflow-y-auto p-10 space-y-12 hide-scrollbar">
@@ -107,7 +107,7 @@ const AppContent: React.FC = () => {
                     <button 
                       key={type}
                       onClick={() => setModalFilters(p => ({...p, dealType: type as any}))}
-                      className={`py-4 rounded-2xl border-2 font-black text-[10px] uppercase tracking-widest transition-all ${modalFilters.dealType === type ? 'border-orange-500 bg-orange-50 text-orange-600' : 'border-slate-100 hover:border-orange-200 text-slate-600'}`}
+                      className={`py-4 rounded-2xl border-2 font-black text-[10px] uppercase tracking-widest transition-all ${modalFilters.dealType === type ? 'border-brand-500 bg-brand-50 text-brand-600' : 'border-slate-100 hover:border-brand-100 text-slate-600'}`}
                     >
                       {type}
                     </button>
@@ -127,10 +127,10 @@ const AppContent: React.FC = () => {
                      <button 
                        key={n} 
                        onClick={() => toggleNeighborhood(n)} 
-                       className={`px-4 py-3 rounded-xl border text-left text-xs font-bold transition-all flex items-center justify-between ${modalFilters.locations?.includes(n) ? 'border-orange-500 bg-orange-50 text-orange-600' : 'border-slate-100 text-slate-600 hover:border-orange-200'}`}
+                       className={`px-4 py-3 rounded-xl border text-left text-xs font-bold transition-all flex items-center justify-between ${modalFilters.locations?.includes(n) ? 'border-brand-500 bg-brand-50 text-brand-600' : 'border-slate-100 text-slate-600 hover:border-brand-100'}`}
                      >
                        {n}
-                       {modalFilters.locations?.includes(n) && <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>}
+                       {modalFilters.locations?.includes(n) && <div className="w-1.5 h-1.5 bg-brand-500 rounded-full"></div>}
                      </button>
                    ))}
                 </div>
@@ -139,7 +139,7 @@ const AppContent: React.FC = () => {
 
             <div className="p-8 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-6">
               <button onClick={() => setIsFilterModalOpen(false)} className="text-xs font-black uppercase tracking-widest text-slate-400">İptal</button>
-              <button onClick={applyModalFilters} className="px-12 py-5 bg-orange-600 text-white font-black rounded-2xl shadow-xl shadow-orange-600/20 hover:bg-orange-700 transition-all active:scale-95">Uygula</button>
+              <button onClick={applyModalFilters} className="px-12 py-5 bg-brand-600 text-white font-black rounded-2xl shadow-xl hover:bg-brand-dark transition-all active:scale-95" style={{boxShadow: '0 20px 25px -5px rgba(250, 1, 117, 0.2)'}}>Uygula</button>
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ const AppContent: React.FC = () => {
                 if (fallback) fallback.style.display = 'flex';
               }}
             />
-            <div className="w-6 h-6 bg-orange-500 rounded-lg flex items-center justify-center text-white hidden">
+            <div className="w-6 h-6 bg-brand-500 rounded-lg flex items-center justify-center text-white hidden">
                <svg viewBox="0 0 32 32" className="w-3 h-3 fill-current"><path d="M16 1L2 12v17h28V12L16 1zm11 26h-6v-8h-10v8H5V13.2l11-8.58 11 8.58V27z"/></svg>
             </div>
             <span className="text-sm font-black text-slate-900 tracking-tighter">evinburada ai</span>
@@ -176,9 +176,9 @@ const AppContent: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-             <span className="hover:text-orange-600 cursor-pointer transition-colors">Kullanım Koşulları</span>
-             <span className="hover:text-orange-600 cursor-pointer transition-colors">KVKK</span>
-             <span className="hover:text-orange-600 cursor-pointer transition-colors">İletişim</span>
+             <span className="hover:text-brand-600 cursor-pointer transition-colors">Kullanım Koşulları</span>
+             <span className="hover:text-brand-600 cursor-pointer transition-colors">KVKK</span>
+             <span className="hover:text-brand-600 cursor-pointer transition-colors">İletişim</span>
           </div>
         </div>
       </footer>
